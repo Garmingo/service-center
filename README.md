@@ -7,7 +7,7 @@ This project was created with [Better-T-Stack](https://github.com/AmanVarshney01
 - **TypeScript** - For type safety and improved developer experience
 - **Next.js** - Full-stack React framework
 - **TailwindCSS** - Utility-first CSS for rapid UI development
-- **Shared UI package** - shadcn/ui primitives live in `packages/ui`
+- **UI system** - Garmingo UI primitives, blocks, hooks, and charts
 - **oRPC** - End-to-end type-safe APIs with OpenAPI integration
 - **Drizzle** - TypeScript-first ORM
 - **PostgreSQL** - Database engine
@@ -30,11 +30,23 @@ This project uses PostgreSQL with Drizzle ORM.
 1. Make sure you have a PostgreSQL database set up.
 2. Update your `apps/web/.env` file with your PostgreSQL connection details.
 
-3. Apply the schema to your database:
+3. Start the local PostgreSQL container (host port `54329` by default; override it with
+   `POSTGRES_HOST_PORT`) and set `DATABASE_URL` accordingly.
 
 ```bash
-pnpm run db:push
+pnpm run db:start
 ```
+
+4. Generate and apply migrations:
+
+```bash
+pnpm run db:generate
+pnpm run db:migrate
+pnpm run db:seed:admin
+```
+
+Never hand-author Drizzle migration files. Changes to Better Auth must first be generated with the
+Better Auth CLI; then generate the Drizzle migration.
 
 Then, run the development server:
 
@@ -44,31 +56,17 @@ pnpm run dev
 
 Open [http://localhost:3001](http://localhost:3001) in your browser to see the fullstack application.
 
-## UI Customization
+## UI system
 
-React web apps in this stack share shadcn/ui primitives through `packages/ui`.
+The web app uses Garmingo UI exclusively:
 
-- Change design tokens and global styles in `packages/ui/src/styles/globals.css`
-- Update shared primitives in `packages/ui/src/components/*`
-- Adjust shadcn aliases or style config in `packages/ui/components.json` and `apps/web/components.json`
+- `@garmingo/ui-primitives` for controls, surfaces, typography, and design tokens
+- `@garmingo/ui-blocks` for app-shell building blocks
+- `@garmingo/ui-hooks` for alerts and dialogs
+- `@garmingo/ui-charts` for operational monitoring
 
-### Add more shared components
-
-Run this from the project root to add more primitives to the shared UI package:
-
-```bash
-npx shadcn@latest add accordion dialog popover sheet table -c packages/ui
-```
-
-Import shared components like this:
-
-```tsx
-import { Button } from "@service-center/ui/components/button";
-```
-
-### Add app-specific blocks
-
-If you want to add app-specific blocks instead of shared primitives, run the shadcn CLI from `apps/web`.
+The complete Tailwind/Garmingo import chain lives in `apps/web/src/index.css`. Do not add
+local design tokens, shadcn components, or a competing component library.
 
 ## Deployment
 

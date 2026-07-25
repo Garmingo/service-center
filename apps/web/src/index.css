@@ -1,1 +1,8 @@
-@import "@service-center/ui/globals.css";
+@import "tailwindcss";
+
+@import "@garmingo/ui-primitives/theme.css";
+@import "@garmingo/ui-blocks/styles.css";
+@import "@garmingo/ui-hooks/styles.css";
+@import "@garmingo/ui-charts/styles.css";
+
+@source "./**/*.{ts,tsx}";

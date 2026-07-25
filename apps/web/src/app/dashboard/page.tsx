@@ -1,4 +1,7 @@
 import { auth } from "@service-center/auth";
+import { db } from "@service-center/db";
+import { appMembership, serviceApp } from "@service-center/db/schema/service-center";
+import { and, eq } from "drizzle-orm";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
@@ -13,11 +16,23 @@ export default async function DashboardPage() {
     redirect("/login");
   }
 
-  return (
-    <div>
-      <h1>Dashboard</h1>
-      <p>Welcome {session.user.name}</p>
-      <Dashboard session={session} />
-    </div>
-  );
+  const isAdmin = session.user.role === "admin";
+  const apps = isAdmin
+    ? await db.select().from(serviceApp).where(eq(serviceApp.isActive, true))
+    : await db
+        .select({
+          id: serviceApp.id,
+          slug: serviceApp.slug,
+          name: serviceApp.name,
+          description: serviceApp.description,
+          icon: serviceApp.icon,
+          isActive: serviceApp.isActive,
+          createdAt: serviceApp.createdAt,
+          updatedAt: serviceApp.updatedAt,
+        })
+        .from(serviceApp)
+        .innerJoin(appMembership, eq(appMembership.appId, serviceApp.id))
+        .where(and(eq(serviceApp.isActive, true), eq(appMembership.userId, session.user.id)));
+
+  return <Dashboard apps={apps} name={session.user.name} isAdmin={isAdmin} />;
 }

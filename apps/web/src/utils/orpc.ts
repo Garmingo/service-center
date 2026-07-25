@@ -2,16 +2,18 @@ import { createORPCClient } from "@orpc/client";
 import { RPCLink } from "@orpc/client/fetch";
 import { createTanstackQueryUtils } from "@orpc/tanstack-query";
 import type { AppRouterClient } from "@service-center/api/routers/index";
+import { alerts } from "@garmingo/ui-hooks";
 import { QueryCache, QueryClient } from "@tanstack/react-query";
-import { toast } from "sonner";
 
 export function createQueryClient() {
   return new QueryClient({
     queryCache: new QueryCache({
       onError: (error, query) => {
-        toast.error(`Error: ${error.message}`, {
+        alerts.danger({
+          title: "Request failed",
+          description: error.message,
           action: {
-            label: "retry",
+            label: "Retry",
             onClick: () => {
               query.invalidate();
             },

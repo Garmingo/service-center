@@ -15,6 +15,7 @@
     "db:studio": "turbo run db:studio -F @service-center/db",
     "db:generate": "turbo run db:generate -F @service-center/db",
     "db:migrate": "turbo run db:migrate -F @service-center/db",
+    "db:seed:admin": "turbo run seed:admin -F @service-center/auth",
     "db:start": "docker compose up -d postgres",
     "db:watch": "docker compose up postgres",
     "db:stop": "docker compose stop postgres",

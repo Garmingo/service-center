@@ -1,16 +1,9 @@
-import { Button } from "@service-center/ui/components/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@service-center/ui/components/dropdown-menu";
-import { Skeleton } from "@service-center/ui/components/skeleton";
+"use client";
+
+import { Button, Menu } from "@garmingo/ui-primitives";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { LogOutIcon, UserIcon } from "lucide-react";
 
 import { authClient } from "@/lib/auth-client";
 
@@ -19,43 +12,46 @@ export default function UserMenu() {
   const { data: session, isPending } = authClient.useSession();
 
   if (isPending) {
-    return <Skeleton className="h-9 w-24" />;
+    return <div className="h-9 w-24 animate-pulse rounded-md bg-bg-sunken" />;
   }
 
   if (!session) {
     return (
       <Link href="/login">
-        <Button variant="outline">Sign In</Button>
+        <Button variant="secondary">Sign in</Button>
       </Link>
     );
   }
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger render={<Button variant="outline" />}>
-        {session.user.name}
-      </DropdownMenuTrigger>
-      <DropdownMenuContent className="bg-card">
-        <DropdownMenuGroup>
-          <DropdownMenuLabel>My Account</DropdownMenuLabel>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem>{session.user.email}</DropdownMenuItem>
-          <DropdownMenuItem
-            variant="destructive"
-            onClick={() => {
-              authClient.signOut({
-                fetchOptions: {
-                  onSuccess: () => {
-                    router.push("/");
-                  },
+    <Menu>
+      <Menu.Trigger>
+        <Button variant="secondary" leftIcon={<UserIcon size={14} />}>
+          {session.user.name}
+        </Button>
+      </Menu.Trigger>
+      <Menu.Popup>
+        <div className="px-3 py-2">
+          <div className="text-small font-medium text-fg1">{session.user.name}</div>
+          <div className="text-caption text-fg3">{session.user.email}</div>
+        </div>
+        <Menu.Separator />
+        <Menu.Item
+          icon={<LogOutIcon size={14} />}
+          variant="danger"
+          onClick={() => {
+            authClient.signOut({
+              fetchOptions: {
+                onSuccess: () => {
+                  router.push("/");
                 },
-              });
-            }}
-          >
-            Sign Out
-          </DropdownMenuItem>
-        </DropdownMenuGroup>
-      </DropdownMenuContent>
-    </DropdownMenu>
+              },
+            });
+          }}
+        >
+          Sign out
+        </Menu.Item>
+      </Menu.Popup>
+    </Menu>
   );
 }

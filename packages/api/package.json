@@ -19,6 +19,7 @@
     "@service-center/db": "workspace:*",
     "@service-center/env": "workspace:*",
     "dotenv": "catalog:",
+    "drizzle-orm": "^0.45.2",
     "next": "catalog:",
     "zod": "catalog:"
   },

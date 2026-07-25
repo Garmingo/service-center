@@ -4,6 +4,7 @@ import { env } from "@service-center/env/server";
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { nextCookies } from "better-auth/next-js";
+import { admin } from "better-auth/plugins/admin";
 
 export function createAuth() {
   const db = createDb();
@@ -17,10 +18,11 @@ export function createAuth() {
     trustedOrigins: [env.CORS_ORIGIN],
     emailAndPassword: {
       enabled: true,
+      disableSignUp: true,
     },
     secret: env.BETTER_AUTH_SECRET,
     baseURL: env.BETTER_AUTH_URL,
-    plugins: [nextCookies()],
+    plugins: [admin(), nextCookies()],
   });
 }
 

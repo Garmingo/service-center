@@ -1,0 +1,13 @@
+---
+description: Enforce generated Drizzle migrations and Better Auth schemas
+alwaysApply: true
+---
+
+# Datenbank- und Better-Auth-Generierung
+
+- Drizzle-Migrationsdateien niemals manuell erstellen, bearbeiten oder löschen.
+- Nach einer Änderung am Drizzle-Schema ausschließlich `drizzle-kit generate` über das vorhandene Paket-Skript verwenden und die generierte Migration prüfen.
+- Für Änderungen am Better-Auth-Schema (insbesondere Plugins und zusätzliche Auth-Felder) niemals Tabellen, Spalten oder Typen erraten oder manuell in das Auth-Schema schreiben.
+- Zuerst die Better-Auth-Konfiguration ändern, danach ausschließlich die Better-Auth-CLI zur Generierung des Schemas ausführen und anschließend die daraus abgeleitete Drizzle-Migration mit `drizzle-kit generate` erzeugen.
+- Generierten Better-Auth-Code und generierte Drizzle-Migrationen nur dann anpassen, wenn die offizielle CLI-Dokumentation ausdrücklich einen Nachbearbeitungsschritt verlangt; andernfalls Konfiguration korrigieren und erneut generieren.
+- Vor dem Commit sicherstellen, dass generiertes Schema, generierte Migration und Auth-Konfiguration zusammenpassen.
