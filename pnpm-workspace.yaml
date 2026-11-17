@@ -23,3 +23,8 @@ catalog:
   "@types/react": ^19.2.17
   "@types/react-dom": ^19.2.3
   tailwindcss: ^4.3.2
+
+# Internal packages from GitHub Packages are exempt from the release-age delay
+# (the migration republished them, so their publish dates are recent).
+minimumReleaseAgeExclude:
+  - '@garmingo/*'
