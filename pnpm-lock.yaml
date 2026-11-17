@@ -967,28 +967,28 @@ packages:
     resolution: {integrity: sha512-HpCo8tmWzLVad5s2d19EhAz5zqrrQ6s69qd6moPMQvkOuSwDT1YgRfWSVuc4ennqrgv3OHppiOGMQ7oC13yIww==}
 
   '@garmingo/ui-blocks@1.10.0':
-    resolution: {integrity: sha1-cFaXrFxy9/vMhueB5EkWROyI2cY=, tarball: https://git.garmingo.net/api/v4/projects/151/packages/npm/@garmingo/ui-blocks/-/@garmingo/ui-blocks-1.10.0.tgz}
+    resolution: {integrity: sha1-cFaXrFxy9/vMhueB5EkWROyI2cY=, tarball: https://npm.pkg.github.com/download/@garmingo/ui-blocks/1.10.0/705697ac5c72f7fbcc86e781e4491644ec88d9c6}
     peerDependencies:
       lucide-react: '>=0.400.0'
       react: ^19.0.0
       react-dom: ^19.0.0
 
   '@garmingo/ui-charts@1.10.0':
-    resolution: {integrity: sha1-3N8nfkIWx9MS6XfMKpVpaMnqzXQ=, tarball: https://git.garmingo.net/api/v4/projects/151/packages/npm/@garmingo/ui-charts/-/@garmingo/ui-charts-1.10.0.tgz}
+    resolution: {integrity: sha1-3N8nfkIWx9MS6XfMKpVpaMnqzXQ=, tarball: https://npm.pkg.github.com/download/@garmingo/ui-charts/1.10.0/dcdf277e4216c7d312e977cc2a956968c9eacd74}
     peerDependencies:
       react: ^19.0.0
       react-dom: ^19.0.0
       recharts: ^3.0.0
 
   '@garmingo/ui-hooks@1.10.0':
-    resolution: {integrity: sha1-GNvJ06JY7hMPBZMqk9u37IcbQPc=, tarball: https://git.garmingo.net/api/v4/projects/151/packages/npm/@garmingo/ui-hooks/-/@garmingo/ui-hooks-1.10.0.tgz}
+    resolution: {integrity: sha1-GNvJ06JY7hMPBZMqk9u37IcbQPc=, tarball: https://npm.pkg.github.com/download/@garmingo/ui-hooks/1.10.0/18dbc9d3a258ee130f05932a93dbb7ec871b40f7}
     peerDependencies:
       lucide-react: '>=0.400.0'
       react: ^19.0.0
       react-dom: ^19.0.0
 
   '@garmingo/ui-primitives@1.10.0':
-    resolution: {integrity: sha1-tGswaA+I7WCbjnZywTawTP4EFXs=, tarball: https://git.garmingo.net/api/v4/projects/151/packages/npm/@garmingo/ui-primitives/-/@garmingo/ui-primitives-1.10.0.tgz}
+    resolution: {integrity: sha1-tGswaA+I7WCbjnZywTawTP4EFXs=, tarball: https://npm.pkg.github.com/download/@garmingo/ui-primitives/1.10.0/b46b30680f88ed609b8e7672c136b04cfe04157b}
     peerDependencies:
       lucide-react: '>=0.400.0'
       react: ^19.0.0
